@@ -45,7 +45,7 @@ public class Main{
         while (!gameOver) {
 
             //player 1 turn
-            System.out.println("\nPlayer 1 Press Enter to Roll Dice");
+            System.out.println("\nPlayer 1: Press Enter to Roll Dice");
             sc.nextLine();
             int dice = rollDice();
 
@@ -77,8 +77,36 @@ public class Main{
             }
 
             //Player 2 turn
+            System.out.println("\nPlayer 2: Press Enter to Roll Dice");
+            sc.nextLine();
 
+            dice = rollDice();
+            System.out.println("Player 2 rolled: " + dice);
+            player2 += dice;
+
+            //check board limit
+            if (player2 > 100){
+                player2 -= dice;
+            }
+
+            //check snake
+            if (snake[player2] != 0){
+                player2 = snake[player2];
+            }
+
+            //check ladder
+            else if (ladders[player2] != 0) {
+                System.out.println("Great! climbed a Ladder!");
+            }
+
+            System.out.println("Player 2 Position: " + player2);
+
+            //check winner
+            if (player2 == 100){
+                System.out.println("\nPlayer 2 Wins!");
+                gameOver = true;
+            }
         }
-
+        sc.close();
     }
 }
